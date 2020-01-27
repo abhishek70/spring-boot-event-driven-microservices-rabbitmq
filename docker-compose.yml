@@ -1,0 +1,36 @@
+version: '3'
+services:
+  rabbitmq:
+    image: rabbitmq:3.8-management
+    container_name: rabbitmq
+    expose:
+      - 5672
+      - 15672
+    ports:
+      - 5672:5672
+      - 15672:15672
+    networks:
+      - spring-boot-rabbitmq
+  producer:
+    build: spring-boot-cloud-stream-producer
+    container_name: message-producer
+    ports:
+      - 8080:8080
+    restart: on-failure
+    depends_on:
+      - rabbitmq
+    networks:
+      - spring-boot-rabbitmq
+  consumer:
+    build: spring-boot-cloud-stream-consumer
+    container_name: message-consumer
+    ports:
+      - 8081:8081
+    restart: on-failure
+    depends_on:
+      - rabbitmq
+    networks:
+      - spring-boot-rabbitmq
+networks:
+  spring-boot-rabbitmq:
+     external: true
