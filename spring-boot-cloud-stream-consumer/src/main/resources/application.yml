@@ -1,5 +1,16 @@
 spring:
   application:
     name: message-consumer
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: guest
+    password: guest
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: orders # Name of Exchange
+          group: ordersQueue # Name of queue
 server:
   port: 8081

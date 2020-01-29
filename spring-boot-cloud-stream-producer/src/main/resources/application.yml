@@ -1,5 +1,15 @@
 spring:
   application:
     name: message-producer
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: guest
+    password: guest
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: orders # Name of Exchange
 server:
   port: 8080

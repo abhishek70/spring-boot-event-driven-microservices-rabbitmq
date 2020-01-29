@@ -1,13 +1,32 @@
 <h2>Spring Boot Event Driven Microservices RabbitMQ</h2>
 
-Run the following command from the root directory to generate .jar for all your services.
+Run below command to start all services
 ```
-mvn clean install
+sh start.sh
 ```
 
+Run below command to stop all services
+```
+sh stop.sh
+```
 
-Run the following command from the root directory to create network and start docker containers.
+Access RabbitMQ management UI. Default username/password : guest/guest
 ```
-docker network create spring-boot-rabbitmq
-docker-compose up -d
+http://localhost:15672
 ```
+
+Run CURL command to place an order for producer application
+```
+curl -X GET http://localhost:8080/orders/1000
+```
+
+After placing an order with producer application, view the logs for consumer
+application. 
+Below is the example of response in logs
+```
+Payment processing for order Id: 1004
+```
+
+#### Documentation:
+1. [RabbitMQ](https://www.rabbitmq.com/getstarted.html)
+2. [Spring Cloud Stream](https://docs.spring.io/spring-cloud-stream/docs/current/reference/htmlsingle/)
