@@ -24,7 +24,7 @@ After placing an order with producer application, view the logs for consumer
 application. 
 Below is the example of response in logs
 ```
-Payment processing for order Id: 1004
+Payment processing for order Id: 1000
 ```
 
 #### Documentation:
